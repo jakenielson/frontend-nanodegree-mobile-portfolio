@@ -23,7 +23,9 @@
 3. Open the command line
 4. Install gulp with `npm install --global gulp-cli`
 5. Navigate to the root directory containing src and dist
-6. Run the following commands:
+6. I already added NPM and gulp to the project, but you can do so with `npm install --save-dev gulp`.
+    * You can install the dependencies found in the gulpfile the same way.
+7. Run the following commands:
     1. `gulp mini-js`
     2. `gulp mini-css`
     3. `gulp mini-html`
