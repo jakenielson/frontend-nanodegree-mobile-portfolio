@@ -8,7 +8,9 @@
 * Commented out the webfonts link (it affects performance negatively)
 * Added cache-control metatags
 * Added a pseudo-async hack to the style.css link
-* Pulled the code that touches layout out of the loop in main.js
+* Pulled the code that touches layout out of the loops in main.js
+* Switched querySelectorAll to getElementsByClassName
+* Changed the number of background pizzas according to screen height
 * Minified all of the HTML, CSS, and JS files with Gulp, adding the minified files to dist
 
 ## How to run

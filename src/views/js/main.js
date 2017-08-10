@@ -449,11 +449,11 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-      // Move code that touches layout out of the loop
-      var pizzas = document.querySelectorAll(".randomPizzaContainer");
-      var pizzaNum = pizzas.length;
-      var dx = determineDx(pizzas[0], size);
-      var newwidth = (pizzas[0].offsetWidth + dx) + 'px';
+    // Move code that touches layout out of the loop
+    var pizzas = document.getElementsByClassName("randomPizzaContainer");
+    var pizzaNum = pizzas.length;
+    var dx = determineDx(pizzas[0], size);
+    var newwidth = (pizzas[0].offsetWidth + dx) + 'px';
     for (var i = 0; i < pizzaNum; i++) {
       pizzas[i].style.width = newwidth;
     }
@@ -471,8 +471,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas"); // Pulled this line out of the for loop
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -504,10 +504,10 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
+  var phase = document.body.scrollTop; // Pulled this out of the loop but retained functionality
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = items[i].basicLeft + 100 * (Math.sin((phase / 1250) + (i % 5))) + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -527,7 +527,8 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var movingPizzas = screen.height / 30;
+  for (var i = 0; i < movingPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
